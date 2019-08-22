@@ -40,16 +40,16 @@ function changeDir(d) {
 }
 function startAnimation() {
     if(dir == "right"){
-        el.style.left = (el.offsetLeft += 3) + 'px';
+        el.style.left = (el.offsetLeft += 5) + 'px';
     }
     else if(dir == "left"){
-        el.style.left = (el.offsetLeft -= 3) + 'px';
+        el.style.left = (el.offsetLeft -= 5) + 'px';
     }
     if(dir =="top"){
-        el.style.top = (el.offsetTop -= 3) + 'px';
+        el.style.top = (el.offsetTop -= 5) + 'px';
     }
     else if(dir == "bottom"){
-        el.style.top = (el.offsetTop += 3) + 'px';
+        el.style.top = (el.offsetTop += 5) + 'px';
     }
     
     reqID = window.requestAnimationFrame(startAnimation);

@@ -1,39 +1,46 @@
-/*#container {
-    width: 400px;
-    height: 400px;
-    position: relative;
-    background: rgb(87,189,130);;
-  }
-  #animate {
-    width: 50px;
-    height: 50px;
-    position: absolute;
-    background-color: rgb(255, 251, 0);
-    */
+body{
+    background: url('../images/pic.jpg')
+}
     #object {
         position: absolute;
-        top: 50px;
+        top: 300px;
+        left: 50px;
         background: #FC0;
-        width: 50px;
-        height: 50px;
+        width: 70px;
+        height: 70px;
         border-radius: 100%;
     }
     .things{
         position: absolute;
-        top: 75px;
+        
         background: #06C;
-        width: 25px;
-        height: 25px;
+        width: 40px;
+        height: 40px;
         
     }
-    #thing1 { left: 200px; }
-    #thing2 { left: 400px; }
-    #thing3 { left: 600px; }
+    #thing1 { left: 700px; top: 100px;}
+    #thing2 { left: 800px; top: 600px;}
+    #thing3 { left: 500px; top: 250px;}
+    #thing4 { left: 500px; top: 500px;}
+    #thing5 { left: 700px; top: 400px;}
+    #thing6 { left: 1000px; top: 450px;}
+   #thing1,#thing2,#thing3,#thing4,#thing5,#thing6 {
+        animation: shake-animation 2.00s ease infinite;
+      }
+      @keyframes shake-animation {
 
-
-
-
-
+        0%,100% { transform:translate(0,0)}
+       
+       10% { transform:translate(0,10px) }
+       20% { transform:translate(0,30px) }
+       30% { transform:translate(0,50px) }
+       40% { transform:translate(0,70px) }
+       50% { transform:translate(0,90px) }
+       60% { transform:translate(0,70px) }
+       70% { transform:translate(0,50px) }
+       80% { transform:translate(0,20px) }
+       90% { transform:translate(0,10px) }
+     }
 
 
 
