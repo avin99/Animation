@@ -1,55 +1,65 @@
-function animatedForm() {
-    const arrows = document.querySelectorAll(".fa-arrow-down");
-    arrows.forEach(arrow => {
-        arrow.addEventListener("click", () => {
-            const input = arrow.previousElementSibling;
-            const parent = arrow.parentElement;
-            const nextForm = parent.nextElementSibling;
 
-
-            if(input.type === "text" && validateUser(input)){
-                nextSlide(parent, nextForm);
-            } else if(input.type === "email" && validateEmail(input)){
-                nextSlide(parent,nextForm);
-            } else if (input.type ==="password" && validateEmail(input)){
-                nextSlide(parent, nextForm);
-            }else{
-                parent.style.animation = "shake 0.5s ease";
-            }
-
-            parent.addEventListener("animationed",()  =>{
-             parent.style.animation = "";
-            });
-        });
-    });
-}
-function validateUser(user) {
-    if(user.value.length < 6){
-        console.log("not enough characters");
-        error("rgb(189,87,87)");
-    }else{
-        error("rgb(87,189,130)");
-        return true;
+/*function myMove() {
+  var elem = document.getElementById("animate");   
+  var pos = 0;
+  var id = setInterval(frame, 5);
+  function frame() {
+    if (pos == 350) {
+      clearInterval(id);
+    } else {
+      pos++; 
+      elem.style.top = pos + "px"; 
+      elem.style.left = pos + "px"; 
+    }
+  }
+}*/
+var el = document.getElementById("object");
+var reqID;
+var dir;
+var p, t, pw, ph, px, py, tw, th, tx, ty;
+function detectCollisions(){
+    for(i=0 ; i < t.length ; i++){
+    pw = p.offsetWidth;
+    ph = p.offsetHeight;
+    px = p.offsetLeft;
+    py = p.offsetTop;
+    tw = t[i].offsetWidth;
+    th = t[i].offsetHeight;
+    tx = t[i].offsetLeft;
+    ty = t[i].offsetTop;
+    
+    if((px+pw) > tx && px <(tx+tw) && (py+ph) > ty && py < (ty+th)){
+        console.log("Collision detected");
+        document.body.removeChild(t[i]);
     }
 }
-function validateEmail(email){
-    const validation= /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if(validation.test(email.value)) {
-        error("rgb(87,189,130)");
-        return true;
-    }else{
-        error("rgb(189,87,87)");
+    window.requestAnimationFrame(detectCollisions);
+}
+function changeDir(d) {
+    dir = d;
+}
+function startAnimation() {
+    if(dir == "right"){
+        el.style.left = (el.offsetLeft += 3) + 'px';
     }
+    else if(dir == "left"){
+        el.style.left = (el.offsetLeft -= 3) + 'px';
+    }
+    if(dir =="top"){
+        el.style.top = (el.offsetTop -= 3) + 'px';
+    }
+    else if(dir == "bottom"){
+        el.style.top = (el.offsetTop += 3) + 'px';
+    }
+    
+    reqID = window.requestAnimationFrame(startAnimation);
 }
-function nextSlide(parent, nextForm){
-    parent.classList.add("innactive");
-    parent.classList.remove("active");
-    parent.classList.add("active");
+function stopAnimation() {
+    window.cancelAnimationFrame(reqID);
 }
-
-function error(color){
-    document.body.style.backgroundColor = color;
+function docReady(){
+    p = document.getElementById("object");
+    t = document.getElementsByClassName("things");
+    detectCollisions();
 }
-
-animatedForm();
- 
+window.addEventListener("load", docReady);
